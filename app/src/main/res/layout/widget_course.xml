@@ -1,0 +1,7 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingTop="8dp" android:paddingBottom="8dp" android:gravity="center_vertical">
+    <TextView android:id="@+id/widget_course_time" android:layout_width="50dp" android:layout_height="wrap_content" android:textSize="12sp" android:textStyle="bold" android:textColor="#247565" />
+    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
+        <TextView android:id="@+id/widget_course_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="13sp" android:textStyle="bold" android:textColor="#2B4033" android:maxLines="1" android:ellipsize="end" />
+        <TextView android:id="@+id/widget_course_room" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="10sp" android:textColor="#788B73" android:maxLines="1" android:ellipsize="end" android:paddingTop="3dp" />
+    </LinearLayout>
+</LinearLayout>

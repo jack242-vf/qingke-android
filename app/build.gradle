@@ -1,0 +1,7 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'cn.qingke.timetable'
+    compileSdk 35
+    defaultConfig { applicationId 'cn.qingke.timetable'; minSdk 26; targetSdk 35; versionCode 5; versionName '0.4.1' }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_1_8; targetCompatibility JavaVersion.VERSION_1_8 }
+}

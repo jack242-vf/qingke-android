@@ -1,0 +1,40 @@
+name: Android build and tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify Gradle wrapper checksum
+        run: echo '2db75c40782f5e8ba1fc278a5574bab070adccb2d21ca5a6e5ed840888448046  gradle/wrapper/gradle-wrapper.jar' | sha256sum --check
+      - name: Run JavaScript, calendar and navigation tests
+        shell: pwsh
+        run: ./tools/test.ps1
+      - name: Assemble Android debug app
+        run: bash ./gradlew --no-daemon :app:assembleDebug
+      - name: Upload CI build
+        uses: actions/upload-artifact@v4
+        with:
+          name: qingke-ci-debug
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
